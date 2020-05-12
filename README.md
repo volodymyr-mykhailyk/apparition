@@ -251,6 +251,8 @@ Include as much information as possible. For example:
 Version history and a list of next-release features and fixes can be found in
 the [changelog](CHANGELOG.md).
 
+dummy commit
+
 ## License ##
 
 Copyright (c) 2019 Thomas Walpole
