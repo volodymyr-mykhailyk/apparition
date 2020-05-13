@@ -289,13 +289,14 @@ module Capybara::Apparition
       # wait for data on STDIN or signal SIGCONT received
       keyboard = IO.select([read], nil, nil, 1) until keyboard || signal
 
-      unless signal
+      until signal
         begin
           input = read.read_nonblock(80) # clear out the read buffer
-          puts unless input&.end_with?("\n")
+          break if input&.end_with?("\n")
         rescue EOFError, IO::WaitReadable
           # Ignore problems reading from STDIN.
         end
+        sleep(0.1)
       end
     ensure
       trap('SIGCONT', old_trap) # Restore the previous signal handler, if there was one.
